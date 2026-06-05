@@ -1,0 +1,12 @@
+# Local scan database (regenerate with discover.py + analyze.py; export with export_dataset.py)
+scans.db
+
+# Scratch output
+out/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
