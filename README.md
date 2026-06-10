@@ -19,9 +19,16 @@ writeups.
 2. **`analyze.py`** — for each repo, reads the README and dependency manifests
    (package.json, pyproject.toml, requirements.txt, Cargo.toml, go.mod) via the
    GitHub API and classifies the likely transport mode (stdio / HTTP / both).
-3. **`report.py`** — prints population, maintenance, transport, and licensing
+3. **`security.py`** — READ-ONLY static security sweep: fetches public source
+   for catalogued repos via the GitHub API and flags security-relevant code
+   patterns (command injection, SSRF surface, eval/exec, unsafe deserialization,
+   hardcoded secrets). It never connects to, runs, or probes a server. Findings
+   are heuristic static signals, tuned for precision. **Only aggregate statistics
+   are published** (see majorlabs.co/security); per-repo findings stay in the
+   local database for coordinated maintainer disclosure.
+4. **`report.py`** — prints population, maintenance, transport, and licensing
    summaries.
-4. **`export_dataset.py`** — writes the published dataset (see below).
+5. **`export_dataset.py`** — writes the published dataset (see below).
 
 ## Run
 
