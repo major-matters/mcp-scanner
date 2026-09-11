@@ -1,5 +1,7 @@
 # mcp-scanner · Sentinel (v0)
 
+[![MCP Surface Check: low surface](https://img.shields.io/badge/MCP_Surface_Check-low-4FA86A)](https://majorlabs.co/security)
+
 An open scan of the public **Model Context Protocol (MCP)** server ecosystem. It
 pulls MCP server repositories from GitHub, captures observable signals (transport
 mode, maintenance, language, license, manifest presence), and stores them in
