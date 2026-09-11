@@ -39,16 +39,16 @@ def _c(p):
 
 CHECKS = [
     # category, langs, weight, pattern, description
-    ("command_injection", {"py"}, 30, _c(r"shell\s*=\s*True"), "subprocess with shell=True"),
-    ("command_injection", {"py"}, 30, _c(r"\bos\.(system|popen)\("), "os.system / os.popen"),
-    ("command_injection", {"js"}, 30, _c(r"child_process(\.|\s*\.\s*)?(exec|execSync)\s*\("), "child_process.exec"),
-    ("command_injection", {"js"}, 30, _c(r"\.exec\s*\(\s*[`'\"]?\$\{|\.exec\s*\(\s*[a-zA-Z_$][\w$]*\s*\+"), "exec with interpolated string"),
-    ("code_execution", {"py"}, 30, _c(r"(?<![\w.])eval\s*\(|(?<![\w.])exec\s*\("), "eval/exec"),
-    ("code_execution", {"js"}, 30, _c(r"(?<![\w.])eval\s*\(|new\s+Function\s*\(|vm\.runInNewContext"), "eval / new Function / vm"),
-    ("unsafe_deserialization", {"py"}, 15, _c(r"pickle\.loads?\s*\(|yaml\.load\s*\((?![^)]*Safe)"), "pickle / unsafe yaml.load"),
-    ("ssrf_surface", {"py"}, 20, _c(r"(requests\.(get|post|put|request|delete)|urllib\.request\.urlopen|httpx\.(get|post|client))\s*\(\s*[a-zA-Z_]"), "outbound request to a non-literal URL"),
-    ("ssrf_surface", {"js"}, 20, _c(r"(fetch|axios(\.\w+)?|got|http\.request)\s*\(\s*[a-zA-Z_$`]"), "outbound request to a non-literal URL"),
-    ("hardcoded_secret", {"py", "js"}, 15, _c(r"(sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|xox[baprs]-[A-Za-z0-9-]{10,})"), "hardcoded credential"),
+    ("command_injection", {"py"}, 30, _c(r"shell\s*=\s*True"), "subprocess with shell=True"),  # surfacecheck: ignore — regex pattern definition, not a call
+    ("command_injection", {"py"}, 30, _c(r"\bos\.(system|popen)\("), "os.system / os.popen"),  # surfacecheck: ignore — regex pattern definition, not a call
+    ("command_injection", {"js"}, 30, _c(r"child_process(\.|\s*\.\s*)?(exec|execSync)\s*\("), "child_process.exec"),  # surfacecheck: ignore — regex pattern definition, not a call
+    ("command_injection", {"js"}, 30, _c(r"\.exec\s*\(\s*[`'\"]?\$\{|\.exec\s*\(\s*[a-zA-Z_$][\w$]*\s*\+"), "exec with interpolated string"),  # surfacecheck: ignore — regex pattern definition, not a call
+    ("code_execution", {"py"}, 30, _c(r"(?<![\w.])eval\s*\(|(?<![\w.])exec\s*\("), "eval/exec"),  # surfacecheck: ignore — regex pattern definition, not a call
+    ("code_execution", {"js"}, 30, _c(r"(?<![\w.])eval\s*\(|new\s+Function\s*\(|vm\.runInNewContext"), "eval / new Function / vm"),  # surfacecheck: ignore — regex pattern definition, not a call
+    ("unsafe_deserialization", {"py"}, 15, _c(r"pickle\.loads?\s*\(|yaml\.load\s*\((?![^)]*Safe)"), "pickle / unsafe yaml.load"),  # surfacecheck: ignore — regex pattern definition, not a call
+    ("ssrf_surface", {"py"}, 20, _c(r"(requests\.(get|post|put|request|delete)|urllib\.request\.urlopen|httpx\.(get|post|client))\s*\(\s*[a-zA-Z_]"), "outbound request to a non-literal URL"),  # surfacecheck: ignore — regex pattern definition, not a call
+    ("ssrf_surface", {"js"}, 20, _c(r"(fetch|axios(\.\w+)?|got|http\.request)\s*\(\s*[a-zA-Z_$`]"), "outbound request to a non-literal URL"),  # surfacecheck: ignore — regex pattern definition, not a call
+    ("hardcoded_secret", {"py", "js"}, 15, _c(r"(sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|xox[baprs]-[A-Za-z0-9-]{10,})"), "hardcoded credential"),  # surfacecheck: ignore — regex pattern definition, not a call
     # path_traversal (open(var,'w')) was dropped from v0: too noisy (most file
     # writes are benign). A precise version needs taint tracking, not regex.
 ]
