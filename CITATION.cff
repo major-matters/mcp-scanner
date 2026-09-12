@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "mcp-scanner"
+type: software
+authors:
+  - name: "Major Labs"
+    website: "https://majorlabs.co"
+repository-code: "https://github.com/major-matters/mcp-scanner"
+url: "https://majorlabs.co"
+license: MIT
+abstract: "The measurement pipeline behind the Major Labs MCP ecosystem dataset. Part of the Major Labs open agent-safety toolkit."
+references:
+  - type: dataset
+    title: "Major Labs MCP Ecosystem Dataset"
+    doi: "10.5281/zenodo.22674847"
